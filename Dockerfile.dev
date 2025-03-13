@@ -1,0 +1,30 @@
+# syntax = docker/dockerfile:1
+
+ARG RUBY_VERSION=3.4.2
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim-bookworm
+
+# 必要なパッケージをインストール
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+    build-essential \
+    libyaml-dev \
+    git \
+    curl \
+    sqlite3 \
+    libsqlite3-dev && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g yarn
+
+WORKDIR /app
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+COPY . .
+
+ENTRYPOINT ["./bin/docker-entrypoint"]
+
+EXPOSE 3000
+
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]
