@@ -1,0 +1,35 @@
+#!/bin/bash
+set -e
+
+# Remove a potentially pre-existing server.pid for Rails.
+rm -f /app/tmp/pids/server.pid
+
+# Railsの依存関係をインストール
+echo "🔍 Checking for Gemfile changes..."
+bundle check || bundle install
+
+# データベースの準備
+if [ "${1}" = "./bin/rails" ] || [ "${1}" = "rails" ] || [ "${1}" = "bin/rails" ]; then
+  echo "🔧 Preparing database..."
+  bundle exec rails db:prepare
+fi
+
+# その他の環境設定
+export RAILS_ENV=${RAILS_ENV:-"development"}
+export RAILS_SERVE_STATIC_FILES=${RAILS_SERVE_STATIC_FILES:-"true"}
+
+echo "🚀 Starting application..."
+exec "$@"
+
+# # Enable jemalloc for reduced memory usage and latency.
+# if [ -z "${LD_PRELOAD+x}" ]; then
+#     LD_PRELOAD=$(find /usr/lib -name libjemalloc.so.2 -print -quit)
+#     export LD_PRELOAD
+# fi
+
+# # If running the rails server then create or migrate existing database
+# if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
+#   ./bin/rails db:prepare
+# fi
+
+# exec "${@)"
