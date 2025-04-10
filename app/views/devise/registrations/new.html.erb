@@ -38,4 +38,27 @@
     <h1 class="text-3xl font-bold text-rose-600">TaleWeave</h1>
     <p class="mt-2 text-sm text-gray-600">カップルのためのデートプラン共有アプリ</p>
   </div>
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <h2 class="mb-6 text-center text-2xl font-bold text-gray-800">新規登録</h2>
+      <% if resource.errors.any? %>
+        <div class="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded">
+          <ul>
+            <% resource.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, html: { class: "space-y-6" }) do |f| %>
+        <div>
+          <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "山田 花子", class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
