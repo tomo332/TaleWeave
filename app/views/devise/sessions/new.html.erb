@@ -1,59 +1,57 @@
 <%= render 'devise/shared/auth_header' %>
-
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="space-y-6">
-          <div>
-            <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
-            <div class="mt-1">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@email.com",
-                  class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
-                  focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
-            </div>
-          </div>
-
-          <div>
-            <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
-            <div class="mt-1">
-              <%= f.password_field :password, autocomplete: "current-password",
-                  class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
-                  focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
-            </div>
-          </div>
-
-          <% if devise_mapping.rememberable? %>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <%= f.check_box :remember_me, class: "h-4 w-4 text-rose-600 focus:ring-rose-500 border-gray-300 rounded" %>
-                <%= f.label :remember_me, "ログイン状態を保持", class: "ml-2 block text-sm text-gray-700" %>
-              </div>
-
-              <div class="text-sm">
-                <%= link_to "パスワードをお忘れですか？", new_password_path(resource_name),
-                    class: "font-medium text-rose-600 hover:text-rose-500" %>
-              </div>
-            </div>
-          <% end %>
-
-          <div>
-            <%= f.submit "ログイン", class: "w-full flex justify-center py-2 px-4 border border-transparent
-                rounded-md shadow-sm text-sm font-medium text-white bg-rose-600 hover:bg-rose-700
-                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" %>
-          </div>
-        </div>
-      <% end %>
-
-    <div class="mt-6 flex items-center">
-      <div class="flex-grow border-t border-gray-300"></div>
-      <span class="mx-4 text-sm text-gray-500">または</span>
-      <div class="flex-grow border-t border-gray-300"></div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="space-y-6">
+    <div>
+      <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+      <div class="mt-1">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@email.com",
+            class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
+            focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
+      </div>
     </div>
 
-    <%# TODO: Googleでも登録できるようにしたい %>
-    <div class="mt-6 text-center">
-      <p class="text-sm text-gray-600">
-        アカウントをお持ちでない方は
-        <%= link_to "新規登録", new_registration_path(resource_name),
-            class: "font-medium text-rose-600 hover:text-rose-500 ml-1" %>
-      </p>
+    <div>
+      <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+      <div class="mt-1">
+        <%= f.password_field :password, autocomplete: "current-password",
+            class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
+            focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
+      </div>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <%= f.check_box :remember_me, class: "h-4 w-4 text-rose-600 focus:ring-rose-500 border-gray-300 rounded" %>
+          <%= f.label :remember_me, "ログイン状態を保持", class: "ml-2 block text-sm text-gray-700" %>
+        </div>
+
+        <div class="text-sm">
+          <%= link_to "パスワードをお忘れですか？", new_password_path(resource_name),
+              class: "font-medium text-rose-600 hover:text-rose-500" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.submit "ログイン", class: "w-full flex justify-center py-2 px-4 border border-transparent
+          rounded-md shadow-sm text-sm font-medium text-white bg-rose-600 hover:bg-rose-700
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" %>
     </div>
   </div>
+<% end %>
+
+<div class="mt-6 flex items-center">
+  <div class="flex-grow border-t border-gray-300"></div>
+  <span class="mx-4 text-sm text-gray-500">または</span>
+  <div class="flex-grow border-t border-gray-300"></div>
+</div>
+
+<%# TODO: Googleでも登録できるようにしたい %>
+<div class="mt-6 text-center">
+  <p class="text-sm text-gray-600">
+    アカウントをお持ちでない方は
+    <%= link_to "新規登録", new_registration_path(resource_name),
+        class: "font-medium text-rose-600 hover:text-rose-500 ml-1" %>
+  </p>
+</div>
