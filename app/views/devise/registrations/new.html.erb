@@ -1,97 +1,88 @@
-<div class="min-h-screen py-12 sm:px-6 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
-    <h1 class="text-3xl font-bold text-rose-600">TaleWeave</h1>
-    <p class="mt-2 text-sm text-gray-600">カップルのためのデートプラン共有アプリ</p>
-  </div>
-  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="bg-white py-8 px-4 shadow sm:rounded-lg">
-      <h2 class="mb-6 text-center text-2xl font-bold text-gray-800">新規登録</h2>
-      <% if resource.errors.any? %>
-        <div class="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded">
-          <ul>
-            <% resource.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+<%= render 'devise/shared/auth_header' %>
+    <% if resource.errors.any? %>
+      <div class="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded">
+        <ul>
+          <% resource.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, html: { class: "space-y-6" }) do |f| %>
-        <div>
-          <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
-          <div class="mt-1">
-            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "山田 花子",
-            class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
-            focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
-          </div>
+    <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, html: { class: "space-y-6" }) do |f| %>
+      <div>
+        <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+        <div class="mt-1">
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "山田 花子",
+          class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
+          focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
         </div>
-
-        <div>
-          <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
-          <div class="mt-1">
-            <%= f.email_field :email, autocomplete: "email", placeholder: "example@email.com",
-            class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
-            focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
-          </div>
-        </div>
-
-        <div>
-          <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
-          <div class="mt-1">
-            <%= f.password_field :password, autocomplete: "new-password",
-            class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
-            focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
-          </div>
-          <p class="mt-1 text-xs text-gray-500">
-            <%= @minimum_password_length%>文字以上で、英数字を含めてください。
-          </p>
-        </div>
-
-        <div>
-          <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
-          <div class="mt-1">
-            <%= f.password_field :password_confirmation, autocomplete: "new-password",
-                class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
-                focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
-          </div>
-        </div>
-
-        <div class="flex items-start">
-          <div class="flex items-center h-5">
-            <%= check_box_tag :agree_terms, false,
-                class: "h-4 w-4 text-rose-600 focus:ring-rose-500 border-gray-300 rounded" %>
-          </div>
-          <div class="ml-3 text-sm">
-            <label for="agree_terms" class="font-medium text-gray-700">
-              <%= link_to "利用規約", "/terms", class: "text-rose-600 hover:text-rose500" %>
-              と
-              <%= link_to "プライバシーポリシー", "/privacy", class: "text-rose-600 hover:text-rose500" %>
-              に同意します。
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <%= f.submit "登録する", class: "w-full flex justify-center py-2 px-4 border border-transparent
-              rounded-md shadow-sm text-sm font-medium text-white bg-rose-600 hover:bg-rose-700
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" %>
-        </div>
-      <% end %>
-
-      <div class="mt-6 flex items-center">
-        <div class="flex-grow border-t border-gray-300"></div>
-        <span class="mx-4 text-sm text-gray-500">または</span>
-        <div class="flex-grow border-t border-gray-300"></div>
       </div>
 
-      <%# TODO: Googleでも登録できるようにしたい %>
-      <div class="mt-6 text-center">
-        <p class="text-sm text-gray-600">
-          すでにアカウントをお持ちの方は
-          <%= link_to "ログイン", new_session_path(resource_name),
-              class: "font-medium text-rose-600 hover:text-rose-500" %>
+      <div>
+        <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+        <div class="mt-1">
+          <%= f.email_field :email, autocomplete: "email", placeholder: "example@email.com",
+          class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
+          focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+        <div class="mt-1">
+          <%= f.password_field :password, autocomplete: "new-password",
+          class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
+          focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
+        </div>
+        <p class="mt-1 text-xs text-gray-500">
+          <%= @minimum_password_length%>文字以上で、英数字を含めてください。
         </p>
       </div>
+
+      <div>
+        <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+        <div class="mt-1">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",
+              class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
+              focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
+        </div>
+      </div>
+
+      <div class="flex items-start">
+        <div class="flex items-center h-5">
+          <%= check_box_tag :agree_terms, false,
+              class: "h-4 w-4 text-rose-600 focus:ring-rose-500 border-gray-300 rounded" %>
+        </div>
+        <div class="ml-3 text-sm">
+          <label for="agree_terms" class="font-medium text-gray-700">
+            <%= link_to "利用規約", "/terms", class: "text-rose-600 hover:text-rose500" %>
+            と
+            <%= link_to "プライバシーポリシー", "/privacy", class: "text-rose-600 hover:text-rose500" %>
+            に同意します。
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <%= f.submit "登録する", class: "w-full flex justify-center py-2 px-4 border border-transparent
+            rounded-md shadow-sm text-sm font-medium text-white bg-rose-600 hover:bg-rose-700
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" %>
+      </div>
+    <% end %>
+
+    <div class="mt-6 flex items-center">
+      <div class="flex-grow border-t border-gray-300"></div>
+      <span class="mx-4 text-sm text-gray-500">または</span>
+      <div class="flex-grow border-t border-gray-300"></div>
+    </div>
+
+    <%# TODO: Googleでも登録できるようにしたい %>
+    <div class="mt-6 text-center">
+      <p class="text-sm text-gray-600">
+        すでにアカウントをお持ちの方は
+        <%= link_to "ログイン", new_session_path(resource_name),
+            class: "font-medium text-rose-600 hover:text-rose-500" %>
+      </p>
     </div>
   </div>
-</div>
