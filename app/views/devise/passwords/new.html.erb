@@ -21,6 +21,7 @@
       <p class="mt-2 text-sm text-gray-500">
         登録時に使用したメールアドレスを入力してください。パスワードリセットのリンクをお送りします。
       </p>
+      <%= render 'devise/shared/field_error', resource, field: :email %>
     </div>
 
     <div>

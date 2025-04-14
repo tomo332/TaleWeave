@@ -1,14 +1,4 @@
 <%= render 'devise/shared/auth_header' do %>
-  <% if resource.errors.any? %>
-    <div class="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded">
-      <ul>
-        <% resource.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, html: { class: "space-y-6" }) do |f| %>
     <div>
       <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
@@ -17,6 +7,7 @@
         class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
         focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
       </div>
+      <%= render 'devise/shared/field_error', resource, field: :name %>
     </div>
 
     <div>
@@ -26,6 +17,7 @@
         class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
         focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
       </div>
+      <%= render 'devise/shared/field_error', resource, field: :email %>
     </div>
 
     <div>
@@ -38,6 +30,7 @@
       <p class="mt-1 text-xs text-gray-500">
         <%= @minimum_password_length%>文字以上で、英数字を含めてください。
       </p>
+      <%= render 'devise/shared/field_error', resource, field: :email %>
     </div>
 
     <div>
@@ -47,6 +40,7 @@
             class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
             focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
       </div>
+      <%= render 'devise/shared/field_error', resource, field: :password_confirmation %>
     </div>
 
     <div class="flex items-start">
