@@ -1,0 +1,5 @@
+<% if object && object.errors[field].present? %>
+  <% object.errors[field].each do |msg| %>
+    <p class="mt-1 text-sm text-red-600"><%= msg %></p>
+  <% end %>
+<% end %>
