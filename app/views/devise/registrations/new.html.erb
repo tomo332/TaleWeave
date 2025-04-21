@@ -7,7 +7,7 @@
         class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
         focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
       </div>
-      <%= render 'devise/shared/field_error', resource, field: :name %>
+      <%= render 'devise/shared/field_error', resource: resource, field: :name %>
     </div>
 
     <div>
@@ -17,7 +17,7 @@
         class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
         focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
       </div>
-      <%= render 'devise/shared/field_error', resource, field: :email %>
+      <%= render 'devise/shared/field_error', resource: resource, field: :email %>
     </div>
 
     <div>
@@ -30,7 +30,7 @@
       <p class="mt-1 text-xs text-gray-500">
         <%= @minimum_password_length%>文字以上で、英数字を含めてください。
       </p>
-      <%= render 'devise/shared/field_error', resource, field: :email %>
+      <%= render 'devise/shared/field_error', resource: resource, field: :email %>
     </div>
 
     <div>
@@ -40,7 +40,7 @@
             class: "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
             focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm" %>
       </div>
-      <%= render 'devise/shared/field_error', resource, field: :password_confirmation %>
+      <%= render 'devise/shared/field_error', resource: resource, field: :password_confirmation %>
     </div>
 
     <div class="flex items-start">
